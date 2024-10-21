@@ -4,7 +4,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation
 from tensorflow.keras.utils import to_categorical
 import matplotlib.pyplot as plt
-
+from tensorflow.keras.models import load_model
 # 讀取 MNIST 資料集
 with np.load('/Users/allen/Desktop/ml-practice/DNN/mnist.npz') as f:
     x_train, y_train = f['x_train'], f['y_train']
@@ -73,3 +73,14 @@ model.add(Dense(units=10, activation='softmax'))
 # 將訓練好的權重讀取回來
 model.save_weights('model_weights.weights.h5')
 
+
+
+# 使用load_model讀取模型
+model = load_model('model.h5')
+expand_data = np.expand_dims(norm_valid[0], axis = 0) 
+model.predict(expand_data)
+pred = np.argmax(model.predict(expand_data), axis = 1)
+print('Label:', pred[0])
+plt.figure(figsize=(2,2))
+plt.imshow(x_valid[0])
+plt.show()
