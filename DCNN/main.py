@@ -106,7 +106,7 @@ class Discriminator(nn.Module):
 def main():
     # 超參數設置
     noise_dim = 100
-    batch_size = 64
+    batch_size = 16
     lr = 0.0002
     num_epochs = 50
     feature_g = 64
